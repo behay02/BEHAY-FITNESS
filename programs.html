@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Направления — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                 <a href="vhod.html" class="btn-account" title="Войти">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+        </svg>
+    </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <!-- Заголовок страницы -->
+    <section class="page-title">
+        <div class="container">
+            <h1>Направления</h1>
+        </div>
+    </section>
+
+    <!-- Список всех направлений -->
+    <section class="section">
+        <div class="container">
+            <div class="cards">
+                <div class="card">
+                    <img src="images/kach.jpg" alt="Тренажерный зал">
+                    <h3>Тренажерный зал</h3>
+                    <p>Персональные и групповые тренировки</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                <div class="card">
+                    <img src="images/mma.jpg" alt="Единоборства">
+                    <h3>Единоборства</h3>
+                    <p>Бокс, MMA, борьба, кикбоксинг, тайский бокс</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                <div class="card">
+                    <img src="images/yoga.jpg" alt="Йога">
+                    <h3>Хатха-йога</h3>
+                    <p>Асаны, пранаямы и медитация</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                <div class="card">
+                    <img src="images/saykl.jpg" alt="Сайклинг">
+                    <h3>Сайкл-тренировки</h3>
+                    <p>Кардиотренировка на спин-байках</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                <div class="card">
+                    <img src="images/pilat.jpg" alt="Пилатес">
+                    <h3>Пилатес</h3>
+                    <p>Укрепление мышц и осанки</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                <div class="card">
+                    <img src="images/stret.jpg" alt="Стретчинг">
+                    <h3>Стретчинг</h3>
+                    <p>Растяжка и гибкость</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+
+                <div class="card">
+                    <img src="images/spa.jpg" alt="Спа">
+                    <h3>Спа-зона</h3>
+                    <p>Сауна, хаммам и джакузи</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                
+                    <div class="card">
+                    <img src="images/basik.jpg" alt="Бассейн">
+                    <h3>Бассейн</h3>
+                    <p>Бассейны и зона отдыха с шезлонгами</p>
+                    <a href="booking.html" class="btn">Записаться</a>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+
+    <script>
+    // Проверка входа при клике на иконку аккаунта
+    document.addEventListener('DOMContentLoaded', function() {
+        var accountBtn = document.getElementById('accountBtn');
+        
+        if (accountBtn) {
+            accountBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Если уже вошёл — в кабинет
+                if (localStorage.getItem('pulseLoggedIn') === 'true') {
+                    window.location.href = 'profile.html';
+                } else {
+                    // Если не вошёл — на страницу входа
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+        
+        // Мобильное меню
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

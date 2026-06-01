@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sql-wasm.js"></script>
+    <script src="db.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="profile.html" class="btn btn-login">Личный кабинет</a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Личный кабинет</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="profile-grid">
+                
+                <!-- Левая колонка: фото и имя -->
+                <div class="profile-sidebar">
+                    <div class="profile-avatar" id="avatarContainer">
+                        <img id="profilePhoto" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Ccircle cx='60' cy='45' r='25' fill='%23888'/%3E%3Cellipse cx='60' cy='105' rx='40' ry='25' fill='%23888'/%3E%3C/svg%3E" alt="Фото профиля">
+                    </div>
+                    <label for="photoUpload" class="btn btn-login" style="margin-top: 10px; cursor: pointer; display: inline-block;">Изменить фото</label>
+                    <input type="file" id="photoUpload" accept="image/*" style="display: none;" onchange="uploadPhoto(event)">
+                    <h3 id="profName">Пользователь</h3>
+                    <p>Москва</p>
+                    <a href="#" class="btn btn-login" style="margin-top: 10px;" onclick="logout()">Выйти</a>
+                </div>
+                
+                <!-- Правая колонка: информация -->
+                <div class="profile-content">
+    
+                    <div class="profile-block">
+                        <h3>Личные данные</h3>
+                        <div class="profile-row">
+                            <span>Фамилия:</span>
+                            <strong id="profLastName">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Имя:</span>
+                            <strong id="profFirstName">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Отчество:</span>
+                            <strong id="profMiddleName">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Дата рождения:</span>
+                            <strong id="profBirthDate">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Телефон:</span>
+                            <strong id="profPhone">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Email:</span>
+                            <strong id="profEmail">—</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-block">
+                        <h3>Мой абонемент</h3>
+                        <div class="profile-row">
+                            <span>Тариф:</span>
+                            <strong id="profTariff" style="color: #ff4500;">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Клуб:</span>
+                            <strong id="profClub">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Дата начала:</span>
+                            <strong id="profStartDate">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Действует до:</span>
+                            <strong id="profEndDate">—</strong>
+                        </div>
+                        <div class="profile-row">
+                            <span>Статус:</span>
+                            <strong style="color: #4caf50;">Активен</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-block">
+                        <h3>Последние посещения</h3>
+                        <div class="profile-row">
+                            <span>Пока нет посещений</span>
+                            <strong>—</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="profile-actions">
+                        <a href="tariffs.html" class="btn">Купить или продлить абонемент</a>
+                    </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+        </div>
+    </footer>
+
+    <script>
+    function uploadPhoto(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var photoUrl = e.target.result;
+                document.getElementById('profilePhoto').src = photoUrl;
+                // Сохраняем с ключом, привязанным к телефону
+                var phone = localStorage.getItem('pulsePhone');
+                localStorage.setItem('profilePhoto_' + phone, photoUrl);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+    
+    function logout() {
+        localStorage.removeItem('pulseLoggedIn');
+        window.location.href = 'index.html';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+        
+        // Загружаем фото для текущего пользователя
+        var phone = localStorage.getItem('pulsePhone');
+        var savedPhoto = localStorage.getItem('profilePhoto_' + phone);
+        if (savedPhoto) {
+            document.getElementById('profilePhoto').src = savedPhoto;
+        }
+        
+        // Загружаем данные пользователя
+        var savedData = localStorage.getItem('pulseUser');
+        
+        if (savedData) {
+            var user = JSON.parse(savedData);
+            
+            var fullName = user.lastName + ' ' + user.firstName;
+            if (user.middleName) {
+                fullName += ' ' + user.middleName;
+            }
+            document.getElementById('profName').textContent = fullName;
+            
+            document.getElementById('profLastName').textContent = user.lastName || '—';
+            document.getElementById('profFirstName').textContent = user.firstName || '—';
+            document.getElementById('profMiddleName').textContent = user.middleName || '—';
+            document.getElementById('profBirthDate').textContent = user.birthDate || '—';
+            document.getElementById('profPhone').textContent = user.phone || '—';
+            document.getElementById('profEmail').textContent = user.email || '—';
+            
+            document.getElementById('profTariff').textContent = user.tariff || '—';
+            document.getElementById('profClub').textContent = user.club || '—';
+            
+            var today = new Date();
+            var startDate = today.toLocaleDateString('ru-RU');
+            var endDate = new Date(today);
+            endDate.setMonth(endDate.getMonth() + 1);
+            var endDateStr = endDate.toLocaleDateString('ru-RU');
+            
+            document.getElementById('profStartDate').textContent = startDate;
+            document.getElementById('profEndDate').textContent = endDateStr;
+            
+            console.log('Данные загружены:', user);
+        }
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BEHAY FITNESS — Сеть фитнес-клубов</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <div class="header-buttons">
+                <a href="vhod.html" class="btn-account" title="Войти">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="8" r="4"></circle>
+            <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+        </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <span class="badge">С каждого абонемента PULSE FITNESS перечисляет 1% на благотворительность</span>
+            <h1>PULSE FITNESS Москва</h1>
+            <p>Сеть фитнес-клубов и тренажерных залов в Москве</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container" style="text-align: center;">
+            <h2>Почему выбирают нас</h2>
+            <p>Современные тренажерные залы, более 20 направлений, профессиональные тренеры</p>
+            <a href="clubs.html" class="btn" style="margin-top: 20px;">Смотреть все клубы</a>
+        </div>
+    </section>
+
+    <section class="section dark">
+        <div class="container">
+            <h2>Направления</h2>
+            <div class="cards">
+                <div class="card">
+                    <img src="images/kach.jpg" alt="Тренажерный зал">
+                    <h3>Тренажерный зал</h3>
+                    <p>Силовые и кардиотренировки</p>
+                    <a href="programs.html">Подробнее</a>
+                </div>
+                <div class="card">
+                    <img src="images/mma.jpg" alt="Единоборства">
+                    <h3>Единоборства</h3>
+                    <p>Бокс, MMA, кикбоксинг</p>
+                    <a href="programs.html">Подробнее</a>
+                </div>
+                <div class="card">
+                    <img src="images/yoga.jpg" alt="Йога">
+                    <h3>Йога</h3>
+                    <p>Хатха, аэройога</p>
+                    <a href="programs.html">Подробнее</a>
+                </div>
+                <div class="card">
+                    <img src="images/saykl.jpg" alt="Сайклинг">
+                    <h3>Сайклинг</h3>
+                    <p>Кардио на велосипедах</p>
+                    <a href="programs.html">Подробнее</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section quiz-banner">
+        <div class="container">
+            <h2>Заполни анкету — получи подарки</h2>
+            <p>Бесплатное пробное занятие + скидка на абонемент</p>
+            <a href="register.html" class="btn btn-big">Пройти тест</a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>Отзывы</h2>
+            <div class="reviews" id="reviews">
+                <div class="review">
+                    <p>"Отличный клуб! Современные тренажеры, чистота. Занимаюсь полгода, результат супер!"</p>
+                    <strong>Анна М.</strong>
+                </div>
+                <div class="review">
+                    <p>"Хожу на единоборства. Тренеры — профессионалы, удобное расписание."</p>
+                    <strong>Дмитрий К.</strong>
+                </div>
+                <div class="review">
+                    <p>"Удобное приложение, всегда видно загрузку клуба. Рекомендую!"</p>
+                    <strong>Алексей В.</strong>
+                </div>
+            </div>
+            <div class="dots">
+                <span class="dot active" onclick="showReview(0)"></span>
+                <span class="dot" onclick="showReview(1)"></span>
+                <span class="dot" onclick="showReview(2)"></span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2>География</h2>
+        </div>
+        <div id="map" style="height: 450px;"></div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+            <p>Email: info@pulsefitness.ru</p>
+        </div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Абонементы — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="vhod.html" class="btn-account" title="Войти">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>   
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Абонементы</h1>
+            <p>Выберите подходящий тариф и начните тренироваться</p>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="tariffs-grid" id="tariffsContainer">
+                <!-- Тарифы загружаются из data.js -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+            <p>Email: info@pulsefitness.ru</p>
+        </div>
+    </footer>
+
+    <script>
+        function saveTariff(name, price) {
+            var userData = {};
+            var saved = localStorage.getItem('pulseUser');
+            if (saved) {
+                userData = JSON.parse(saved);
+            }
+            userData.tariff = name;
+            userData.price = price;
+            localStorage.setItem('pulseUser', JSON.stringify(userData));
+            localStorage.setItem('selectedTariff', name);
+            localStorage.setItem('selectedPrice', price);
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var burger = document.getElementById('burger');
+            var nav = document.getElementById('nav');
+            if (burger && nav) {
+                burger.addEventListener('click', function() {
+                    nav.classList.toggle('active');
+                });
+            }
+        });
+    </script>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

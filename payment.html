@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оплата — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sql-wasm.js"></script>
+    <script src="db.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="#" class="btn-account" title="Личный кабинет" id="accountBtn">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Оплата абонемента</h1>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <div class="payment-grid">
+                
+                <div class="payment-form">
+                    <h3>Данные карты</h3>
+                    
+                    <form id="paymentForm" onsubmit="submitPayment(event)">
+                        
+                        <div class="form-group">
+                            <label>Номер карты</label>
+                            <input type="text" id="cardNumber" placeholder="0000 0000 0000 0000" maxlength="19" required oninput="formatCardNumber(this)">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Срок действия</label>
+                                <input type="text" id="cardExpiry" placeholder="ММ/ГГ" maxlength="5" required oninput="formatExpiry(this)">
+                            </div>
+                            <div class="form-group">
+                                <label>CVC</label>
+                                <input type="text" id="cardCvc" placeholder="123" maxlength="3" required oninput="this.value = this.value.replace(/\D/g, '')">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Имя держателя карты</label>
+                            <input type="text" id="cardName" placeholder="IVAN IVANOV" required oninput="this.value = this.value.toUpperCase()">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-big" style="width: 100%;">Оплатить</button>
+                        
+                    </form>
+                    
+                    <div class="payment-security">
+                        <p>🔒 Платёж защищён. Данные карты не сохраняются.</p>
+                    </div>
+                </div>
+                
+                <div class="payment-info">
+                    <h3>Ваш заказ</h3>
+                    
+                    <div class="payment-order">
+                        <div class="payment-row">
+                            <span>Тариф:</span>
+                            <strong id="orderTariff">—</strong>
+                        </div>
+                        <div class="payment-row">
+                            <span>Период:</span>
+                            <strong>1 месяц</strong>
+                        </div>
+                    </div>
+                    
+                    <div class="payment-total">
+                        <span>Итого к оплате:</span>
+                        <strong id="orderPrice">0 ₽</strong>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="payment-success" id="paymentSuccess" style="display: none;">
+                <h2>✅ Оплата прошла успешно!</h2>
+                <p>Спасибо за покупку абонемента!</p>
+                <a href="profile.html" class="btn">Перейти в личный кабинет</a>
+            </div>
+            
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+        </div>
+    </footer>
+
+    <script>
+    function formatCardNumber(input) {
+        var value = input.value.replace(/\D/g, '');
+        value = value.replace(/(\d{4})(?=\d)/g, '$1 ');
+        input.value = value;
+    }
+    
+    function formatExpiry(input) {
+        var value = input.value.replace(/\D/g, '');
+        if (value.length >= 2) {
+            value = value.slice(0, 2) + '/' + value.slice(2);
+        }
+        input.value = value;
+    }
+    
+    async function submitPayment(event) {
+        event.preventDefault();
+        
+        var cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
+        var cardLast4 = cardNumber.slice(-4);
+        
+        // Сохраняем в БД
+        try {
+            await initDatabase();
+            savePayment(
+                localStorage.getItem('pulsePhone') || '',
+                localStorage.getItem('selectedTariff') || '',
+                localStorage.getItem('selectedPrice') || '',
+                cardLast4
+            );
+            console.log('Платёж сохранён в БД');
+        } catch (e) {
+            console.log('Ошибка сохранения платежа:', e);
+        }
+        
+        localStorage.setItem('pulsePayment', 'true');
+        
+        document.querySelector('.payment-grid').style.display = 'none';
+        document.getElementById('paymentSuccess').style.display = 'block';
+        
+        setTimeout(function() {
+            window.location.href = 'profile.html';
+        }, 3000);
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+        
+        var accountBtn = document.getElementById('accountBtn');
+        if (accountBtn) {
+            accountBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                if (localStorage.getItem('pulseLoggedIn') === 'true') {
+                    window.location.href = 'profile.html';
+                } else {
+                    window.location.href = 'login.html';
+                }
+            });
+        }
+        
+        var tariff = localStorage.getItem('selectedTariff');
+        var price = localStorage.getItem('selectedPrice');
+        
+        document.getElementById('orderTariff').textContent = tariff || 'Не выбран';
+        document.getElementById('orderPrice').textContent = (price || '0') + ' ₽';
+    });
+    </script>
+
+</body>
+</html>

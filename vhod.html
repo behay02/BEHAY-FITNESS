@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sql-wasm.js"></script>
+    <script src="db.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="vhod.html" class="btn-account" title="Войти">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="login-box">
+                
+                <h2>Вход в аккаунт</h2>
+                <p>Войдите, чтобы управлять абонементом</p>
+                
+                <form id="loginForm" onsubmit="submitLogin(event)">
+                    
+                    <div class="form-group">
+                        <label for="loginPhone">Номер телефона</label>
+                        <input type="tel" id="loginPhone" placeholder="+7 (999) 123-45-67" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <div style="position: relative;">
+                            <input type="password" id="loginPassword" placeholder="Введите пароль" required style="width: 100%; padding-right: 40px;">
+                            <button type="button" onclick="togglePassword('loginPassword')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem;">👁️</button>
+                        </div>
+                    </div>
+                    
+                    <p id="loginError" style="color: #ff4444; display: none;">Неверный телефон или пароль!</p>
+                    
+                    <button type="submit" class="btn btn-big">Войти</button>
+                    
+                </form>
+                
+                <div class="login-links">
+                    <a href="register.html">Нет аккаунта? Зарегистрироваться</a>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+        </div>
+    </footer>
+
+    <script>
+    function togglePassword(fieldId) {
+        var input = document.getElementById(fieldId);
+        input.type = (input.type === 'password') ? 'text' : 'password';
+    }
+
+    async function submitLogin(event) {
+        event.preventDefault();
+        
+        var phone = document.getElementById('loginPhone').value;
+        var password = document.getElementById('loginPassword').value;
+        
+        try {
+            await initDatabase();
+            
+            loginUser(phone, password, function(data) {
+                if (data.success) {
+                    localStorage.setItem('pulsePhone', phone);
+                    localStorage.setItem('pulseLoggedIn', 'true');
+                    localStorage.setItem('pulseUser', JSON.stringify(data.user));
+                    window.location.href = 'profile.html';
+                } else {
+                    document.getElementById('loginError').style.display = 'block';
+                    document.getElementById('loginError').textContent = data.error;
+                }
+            });
+        } catch (e) {
+            var saved = localStorage.getItem('pulseUser');
+            if (saved) {
+                var user = JSON.parse(saved);
+                if (user.phone === phone && user.password === password) {
+                    localStorage.setItem('pulseLoggedIn', 'true');
+                    window.location.href = 'profile.html';
+                    return;
+                }
+            }
+            document.getElementById('loginError').style.display = 'block';
+            document.getElementById('loginError').textContent = 'Неверный телефон или пароль!';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+        
+        if (localStorage.getItem('pulseLoggedIn') === 'true') {
+            window.location.href = 'profile.html';
+        }
+    });
+    </script>
+
+</body>
+</html>

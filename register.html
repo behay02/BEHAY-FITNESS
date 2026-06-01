@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="sql-wasm.js"></script>
+    <script src="db.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="vhod.html" class="btn-account" title="Войти">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <div class="register-box">
+                
+                <h2>Регистрация</h2>
+                
+                <form id="registerForm" onsubmit="submitRegister(event)">
+                    
+                    <div class="form-group">
+                        <label for="lastName">Фамилия</label>
+                        <input type="text" id="lastName" placeholder="Иванов" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="firstName">Имя</label>
+                        <input type="text" id="firstName" placeholder="Иван" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="middleName">Отчество</label>
+                        <input type="text" id="middleName" placeholder="Иванович">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">Дата рождения</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Номер телефона</label>
+                        <input type="tel" id="phone" placeholder="+7 (999) 123-45-67" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="example@mail.ru">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Придумайте пароль</label>
+                        <div style="position: relative;">
+                            <input type="password" id="password" placeholder="Минимум 6 символов" minlength="6" required style="width: 100%; padding-right: 40px;">
+                            <button type="button" onclick="togglePassword('password')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem;">👁️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="passwordConfirm">Повторите пароль</label>
+                        <div style="position: relative;">
+                            <input type="password" id="passwordConfirm" placeholder="Повторите пароль" minlength="6" required style="width: 100%; padding-right: 40px;">
+                            <button type="button" onclick="togglePassword('passwordConfirm')" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; color: #aaa; cursor: pointer; font-size: 1.2rem;">👁️</button>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-big">Зарегистрироваться</button>
+                    
+                </form>
+            
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+            <p>Email: info@pulsefitness.ru</p>
+        </div>
+    </footer>
+
+    <script>
+    function togglePassword(fieldId) {
+        var input = document.getElementById(fieldId);
+        input.type = (input.type === 'password') ? 'text' : 'password';
+    }
+
+    async function submitRegister(event) {
+        event.preventDefault();
+        
+        var password = document.getElementById('password').value;
+        var passwordConfirm = document.getElementById('passwordConfirm').value;
+        
+        if (password !== passwordConfirm) {
+            alert('Пароли не совпадают!');
+            return;
+        }
+        
+        var userData = {
+            lastName: document.getElementById('lastName').value,
+            firstName: document.getElementById('firstName').value,
+            middleName: document.getElementById('middleName').value,
+            birthDate: document.getElementById('birthDate').value,
+            phone: document.getElementById('phone').value,
+            email: document.getElementById('email').value,
+            password: password,
+            tariff: ''
+        };
+        
+        try {
+            await initDatabase();
+            
+            registerUser(userData, function(data) {
+                if (data.success) {
+                    localStorage.setItem('pulsePhone', userData.phone);
+                    localStorage.setItem('pulseLoggedIn', 'true');
+                    localStorage.setItem('pulseUser', JSON.stringify(userData));
+                    window.location.href = 'profile.html';
+                } else {
+                    alert(data.error);
+                }
+            });
+        } catch (e) {
+            console.log('БД не загрузилась, сохраняем в localStorage:', e);
+            localStorage.setItem('pulseUser', JSON.stringify(userData));
+            localStorage.setItem('pulsePhone', userData.phone);
+            localStorage.setItem('pulseLoggedIn', 'true');
+            window.location.href = 'profile.html';
+        }
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+    });
+    </script>
+
+</body>
+</html>

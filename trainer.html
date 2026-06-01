@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренеры — BEHAY FITNESS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container header-inner">
+            <a href="index.html" class="logo">BEHAY FITNESS</a>
+            <nav class="nav" id="nav">
+                <a href="clubs.html">Клубы</a>
+                <a href="programs.html">Направления</a>
+                <a href="trainer.html">Тренеры</a>
+                <a href="tariffs.html">Абонементы</a>
+            </nav>
+            <div class="header-buttons">
+                <a href="vhod.html" class="btn-account" title="Войти">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="8" r="4"></circle>
+                        <path d="M4 20c0-4 4-7 8-7s8 3 8 7"></path>
+                    </svg>
+                </a>
+            </div>
+            <span class="burger" id="burger">☰</span>
+        </div>
+    </header>
+
+    <section class="page-title">
+        <div class="container">
+            <h1>Наши тренеры</h1>
+            <p>Профессионалы работают во всех клубах сети</p>
+        </div>
+    </section>
+
+    <section style="padding: 20px 0 0;">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-club="all">Все клубы</button>
+                <button class="filter-btn" data-club="aviapark">Авиапарк</button>
+                <button class="filter-btn" data-club="metropolis">Метрополис</button>
+                <button class="filter-btn" data-club="evropeyskiy">Европейский</button>
+                <button class="filter-btn" data-club="afimall">Афимолл Сити</button>
+                <button class="filter-btn" data-club="ohotny">Охотный ряд</button>
+                <button class="filter-btn" data-club="evropolis">Европолис</button>
+                <button class="filter-btn" data-club="atrium">Атриум</button>
+                <button class="filter-btn" data-club="columbus">Columbus</button>
+                <button class="filter-btn" data-club="riviera">Ривьера</button>
+                <button class="filter-btn" data-club="vegas">Vegas Крокус Сити</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="club-title">Центр и Север <span>• Афимолл Сити, Охотный ряд, Европейский, Авиапарк, Метрополис</span></h2>
+            <div class="trainers-grid" id="trainersGroup1">
+                <!-- Загружается из data.js -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section dark">
+        <div class="container">
+            <h2 class="club-title">Восток, Юг и Запад <span>• Европолис, Атриум, Columbus, Ривьера, Vegas Крокус Сити</span></h2>
+            <div class="trainers-grid" id="trainersGroup2">
+                <!-- Загружается из data.js -->
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>PULSE FITNESS © 2024</p>
+            <p>Телефон: 8 (800) 555-35-35</p>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        // Бургер-меню
+        var burger = document.getElementById('burger');
+        var nav = document.getElementById('nav');
+        if (burger && nav) {
+            burger.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+        }
+        
+        // Отрисовка тренеров из data.js
+        if (typeof SITE_DATA !== 'undefined' && SITE_DATA.trainers) {
+            var group1 = document.getElementById('trainersGroup1');
+            var group2 = document.getElementById('trainersGroup2');
+            
+            var centerClubs = ['aviapark', 'metropolis', 'evropeyskiy', 'afimall', 'ohotny'];
+            var otherClubs = ['evropolis', 'atrium', 'columbus', 'riviera', 'vegas'];
+            
+            SITE_DATA.trainers.forEach(function(trainer) {
+                var card = document.createElement('div');
+                card.className = 'trainer-card coach-card';
+                card.setAttribute('data-clubs', trainer.clubs);
+                
+                card.innerHTML = 
+                    '<div class="trainer-photo"><img src="' + (trainer.image || 'trainers/default.jpg') + '" alt="' + trainer.name + '"></div>' +
+                    '<h3>' + trainer.name + '</h3>' +
+                    '<p class="trainer-spec">' + trainer.speciality + '</p>' +
+                    '<p class="trainer-exp">Опыт: ' + (trainer.exp || '—') + '</p>' +
+                    '<p class="trainer-clubs">📍 ' + trainer.clubs.replace(/(\w+)/g, function(m) {
+                        var names = { aviapark: 'Авиапарк', metropolis: 'Метрополис', evropeyskiy: 'Европейский', afimall: 'Афимолл Сити', ohotny: 'Охотный ряд', evropolis: 'Европолис', atrium: 'Атриум', columbus: 'Columbus', riviera: 'Ривьера', vegas: 'Vegas Крокус Сити' };
+                        return names[m] || m;
+                    }) + '</p>' +
+                    '<p class="trainer-about">' + (trainer.about || '') + '</p>';
+                
+                // Определяем группу
+                var clubList = trainer.clubs.split(' ');
+                var isCenter = clubList.some(function(c) { return centerClubs.indexOf(c) !== -1; });
+                
+                if (isCenter && group1) {
+                    group1.appendChild(card);
+                } else if (group2) {
+                    group2.appendChild(card);
+                }
+            });
+        }
+        
+        // Фильтр тренеров
+        var filterButtons = document.querySelectorAll('.filter-btn');
+        var coachCards = document.querySelectorAll('.coach-card');
+        
+        filterButtons.forEach(function(btn) {
+            btn.addEventListener('click', function() {
+                filterButtons.forEach(function(b) { b.classList.remove('active'); });
+                this.classList.add('active');
+                
+                var selectedClub = this.getAttribute('data-club');
+                
+                coachCards.forEach(function(card) {
+                    if (selectedClub === 'all') {
+                        card.style.display = '';
+                    } else {
+                        var clubs = card.getAttribute('data-clubs');
+                        card.style.display = (clubs && clubs.indexOf(selectedClub) !== -1) ? '' : 'none';
+                    }
+                });
+            });
+        });
+        
+    });
+    </script>
+
+</body>
+</html>

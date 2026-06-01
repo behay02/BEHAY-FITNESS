@@ -1,0 +1,1181 @@
+/* === БАЗОВЫЕ НАСТРОЙКИ === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: #ffffff;
+    line-height: 1.5;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; text-align: center; margin-bottom: 30px; }
+h3 { font-size: 1.2rem; margin: 10px 0; }
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+a {
+    color: #ff4500;
+    text-decoration: none;
+}
+
+/* === КНОПКИ === */
+.btn {
+    display: inline-block;
+    padding: 10px 24px;
+    background-color: #ff4500;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #cc3700;
+}
+
+.btn-big {
+    padding: 15px 35px;
+    font-size: 1.2rem;
+}
+
+/* === ШАПКА === */
+.header {
+    background-color: #0a0a0a;
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid #222;
+}
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    color: #ff4500;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.nav {
+    display: flex;
+    gap: 20px;
+}
+
+.nav a {
+    color: #fff;
+    font-size: 0.95rem;
+}
+
+.nav a:hover {
+    color: #ff4500;
+}
+
+/* Бургер-меню (скрыт на десктопе, виден на мобильных) */
+.burger {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+/* === ПЕРВЫЙ ЭКРАН === */
+.hero {
+    /* Фоновое изображение тренажерного зала */
+    background: 
+        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
+        url(images/shapka.jpg) center/cover no-repeat;
+    
+    /* Растягиваем на весь экран */
+    min-height: 100vh;
+    
+    /* Выравнивание текста по центру */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+    /* Отступы */
+    padding: 60px 20px;
+}
+
+/* Контейнер для текста внутри hero */
+.hero-content {
+    max-width: 800px;
+}
+
+/* Заголовок */
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    color: #fff;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Подзаголовок */
+.hero p {
+    font-size: 1.3rem;
+    color: #ccc;
+    margin-bottom: 30px;
+}
+
+/* Бейдж "1% на благотворительность" */
+.hero .badge {
+    display: inline-block;
+    border: 1px solid #ff4500;
+    color: #ff4500;
+    padding: 8px 20px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    margin-bottom: 25px;
+    background-color: rgba(255, 69, 0, 0.1);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+}
+
+/* === СЕКЦИИ === */
+.section {
+    padding: 60px 0;
+}
+
+.dark {
+    background-color: #111;
+}
+
+.page-title {
+    padding: 40px 0;
+    text-align: center;
+    background-color: #111;
+}
+
+/* === КАРТОЧКИ === */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    padding-bottom: 20px;
+    border: 1px solid #222;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.card h3, .card p {
+    padding: 0 20px;
+    margin-bottom: 8px;
+}
+
+.card p {
+    color: #aaa;
+    font-size: 0.9rem;
+}
+
+.card .btn {
+    margin: 10px 20px 0;
+}
+
+/* === КВИЗ-БАННЕР === */
+.quiz-banner {
+    text-align: center;
+    background-color: #111;
+}
+
+.quiz-banner p {
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+/* === ОТЗЫВЫ === */
+.review {
+    background-color: #1a1a1a;
+    padding: 25px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 500px;
+    margin: 0 auto;
+    display: none;
+}
+
+.review:first-child {
+    display: block;
+}
+
+.review p {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+.dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #444;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+}
+
+.dot.active {
+    background-color: #ff4500;
+}
+
+/* === СТРАНИЦА РЕГИСТРАЦИИ === */
+.register-box {
+    max-width: 550px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.register-box h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.register-box > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    background-color: #222;
+    border: 1px solid #333;
+    color: #fff;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-family: Arial, sans-serif;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #ff4500;
+}
+
+.form-group select {
+    cursor: pointer;
+}
+
+.form-group select option {
+    background-color: #1a1a1a;
+    color: #fff;
+}
+
+.register-box .btn-big {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.1rem;
+}
+
+/* Сообщение об успехе */
+.register-success {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #ff4500;
+}
+
+.register-success h2 {
+    margin-bottom: 15px;
+}
+
+.register-success p {
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.register-success .btn {
+    margin-top: 20px;
+}
+/* === СТРАНИЦА ПРИЛОЖЕНИЯ === */
+.app-page {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.app-page ul {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.app-page li {
+    padding: 10px 0;
+    font-size: 1.1rem;
+}
+
+.app-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* === ПОДВАЛ === */
+.footer {
+    background-color: #050505;
+    padding: 30px 0;
+    text-align: center;
+    border-top: 1px solid #222;
+}
+
+.footer p {
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+/* === АДАПТИВНОСТЬ (мобильные устройства) === */
+@media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    .hero h1 { font-size: 2.2rem; }
+
+    /* Скрываем обычное меню */
+    .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a;
+        flex-direction: column;
+        padding: 20px;
+        border-top: 1px solid #222;
+    }
+
+    /* Показываем меню, когда есть класс active */
+    .nav.active {
+        display: flex;
+    }
+
+    /* Показываем кнопку-бургер */
+    .burger {
+        display: block;
+    }
+
+    /* Скрываем кнопку "Купить абонемент" в шапке на мобильных */
+    .header .btn {
+        display: none;
+    }
+
+    /* Приложение — в колонку */
+    .app-page {
+        flex-direction: column;
+    }
+}
+/* === СТРАНИЦА АБОНЕМЕНТОВ === */
+.tariffs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: stretch;
+}
+
+.tariff-card {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s, border-color 0.3s;
+    position: relative;
+}
+
+.tariff-card:hover {
+    transform: translateY(-5px);
+    border-color: #ff4500;
+}
+
+/* Популярный тариф */
+.tariff-popular {
+    border-color: #ff4500;
+    transform: scale(1.03);
+}
+
+.tariff-popular:hover {
+    transform: scale(1.03) translateY(-5px);
+}
+
+.tariff-badge {
+    background-color: #ff4500;
+    color: #fff;
+    text-align: center;
+    padding: 8px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Шапка тарифа */
+.tariff-header {
+    text-align: center;
+    padding: 30px 20px 20px;
+}
+
+.tariff-header h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.tariff-price {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #ff4500;
+    margin: 0;
+    line-height: 1;
+}
+
+.tariff-period {
+    color: #888;
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+/* Тело тарифа (список возможностей) */
+.tariff-body {
+    padding: 20px;
+    flex-grow: 1;
+}
+
+.tariff-body ul {
+    list-style: none;
+}
+
+.tariff-body li {
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+    font-size: 0.95rem;
+    color: #ccc;
+}
+
+.tariff-body li:last-child {
+    border-bottom: none;
+}
+
+/* Подвал тарифа (кнопка) */
+.tariff-footer {
+    padding: 20px;
+    text-align: center;
+}
+
+.tariff-footer .btn {
+    width: 100%;
+    padding: 14px;
+    font-size: 1.1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .tariffs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .tariff-popular {
+        transform: none;
+    }
+    
+    .tariff-price {
+        font-size: 2.5rem;
+    }
+}
+/* === КНОПКИ В ШАПКЕ === */
+.header-buttons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-login {
+    background-color: transparent !important;
+    border: 1px solid #fff !important;
+    color: #fff !important;
+}
+
+.btn-login:hover {
+    background-color: #fff !important;
+    color: #000 !important;
+}
+
+/* === СТРАНИЦА ВХОДА === */
+.login-box {
+    max-width: 450px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.login-box h2 {
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.login-box > p {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.login-links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login-links a {
+    color: #ff4500;
+    font-size: 0.9rem;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+.login-box .btn-big {
+    width: 100%;
+    margin-top: 10px;
+    padding: 14px;
+    font-size: 1.1rem;
+}
+
+/* Сообщение об успешном входе */
+.login-success {
+    max-width: 450px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #ff4500;
+}
+
+.login-success h2 {
+    margin-bottom: 15px;
+}
+
+.login-success p {
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.login-success .btn {
+    margin-top: 20px;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .header-buttons {
+        display: none;
+    }
+}
+/* === ЛИЧНЫЙ КАБИНЕТ === */
+.profile-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+/* Левая колонка */
+.profile-sidebar {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid #ff4500;
+}
+
+.profile-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-sidebar h3 {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+}
+
+.profile-sidebar p {
+    color: #aaa;
+    font-size: 0.9rem;
+    margin-bottom: 5px;
+}
+
+/* Правая колонка */
+.profile-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.profile-block {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 25px;
+}
+
+.profile-block h3 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+    font-size: 1.2rem;
+}
+
+.profile-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 0;
+    border-bottom: 1px solid #222;
+}
+
+.profile-row:last-child {
+    border-bottom: none;
+}
+
+.profile-row span {
+    color: #aaa;
+    font-size: 0.95rem;
+}
+
+.profile-row strong {
+    font-size: 0.95rem;
+}
+
+/* Кнопки действий */
+.profile-actions {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .profile-actions {
+        flex-direction: column;
+    }
+    
+    .profile-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+.btn-account {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.btn-account:hover {
+    background-color: #fff;
+    color: #000;
+}
+/* === СТРАНИЦА ЗАПИСИ НА ТРЕНИРОВКУ === */
+.booking-box {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #333;
+}
+
+.booking-step {
+    display: none;
+}
+
+.booking-step.active {
+    display: block;
+}
+
+.booking-step h3 {
+    margin-bottom: 20px;
+    font-size: 1.3rem;
+}
+
+.booking-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.booking-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #333;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.3s;
+}
+
+.booking-btn:hover {
+    border-color: #ff4500;
+    background-color: #2a2a2a;
+}
+
+.booking-back {
+    background-color: transparent;
+    border: 1px solid #555;
+    color: #aaa;
+    text-align: center;
+}
+
+.booking-back:hover {
+    border-color: #fff;
+    color: #fff;
+}
+
+/* Результат записи */
+.booking-summary {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 15px;
+}
+
+.booking-summary p {
+    padding: 8px 0;
+    border-bottom: 1px solid #222;
+}
+
+.booking-summary p:last-child {
+    border-bottom: none;
+}
+
+.booking-summary strong {
+    color: #aaa;
+}
+
+.booking-summary span {
+    color: #ff4500;
+    font-weight: bold;
+}
+/* === СТРАНИЦА ОПЛАТЫ === */
+.payment-grid {
+    display: grid;
+    grid-template-columns: 1fr 350px;
+    gap: 30px;
+    align-items: start;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.payment-form {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.payment-form h3 {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.payment-security {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.payment-security p {
+    color: #888;
+    font-size: 0.85rem;
+}
+
+/* Правая часть */
+.payment-info {
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 12px;
+    padding: 30px;
+}
+
+.payment-info h3 {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.payment-order {
+    margin-bottom: 20px;
+}
+
+.payment-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #222;
+}
+
+.payment-row span {
+    color: #aaa;
+}
+
+.payment-total {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 15px;
+    border-top: 1px solid #333;
+    font-size: 1.2rem;
+}
+
+.payment-total strong {
+    color: #ff4500;
+}
+
+/* Успех */
+.payment-success {
+    max-width: 500px;
+    margin: 40px auto;
+    text-align: center;
+    background-color: #1a1a1a;
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid #ff4500;
+}
+
+.payment-success h2 {
+    margin-bottom: 15px;
+}
+
+.payment-success p {
+    color: #ccc;
+    margin-bottom: 10px;
+}
+
+.payment-success .btn {
+    margin-top: 20px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .payment-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+/* === ЗАГОЛОВОК КЛУБА === */
+.club-title {
+    border-bottom: 2px solid #ff4500;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+.club-title span {
+    color: #aaa;
+    font-size: 0.8rem;
+    font-weight: normal;
+}
+/* === СТРАНИЦА ТРЕНЕРОВ (в стиле TMPL) === */
+.trainers-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.trainer-card {
+    display: flex;
+    align-items: center;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 20px 25px;
+    transition: border-color 0.3s;
+    gap: 25px;
+}
+
+.trainer-card:hover {
+    border-color: #ff4500;
+}
+
+.trainer-photo {
+    width: 100px;
+    height: 100px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: none;
+}
+
+.trainer-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.trainer-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.trainer-info h3 {
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+}
+
+.trainer-spec {
+    color: #ff4500;
+    font-size: 0.9rem;
+    margin-bottom: 2px;
+}
+
+.trainer-exp {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.trainer-clubs {
+    color: #aaa;
+    font-size: 0.8rem;
+    margin-bottom: 4px;
+}
+
+.trainer-about {
+    color: #ccc;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+    .trainer-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .trainer-photo {
+        width: 100px;
+        height: 100px;
+    }
+}
+/* === ФИЛЬТР КЛУБОВ === */
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+.filter-btn {
+    padding: 10px 22px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    border-color: #ff4500;
+    color: #ff4500;
+}
+
+.filter-btn.active {
+    background-color: #ff4500;
+    border-color: #ff4500;
+    color: #fff;
+}
+
+/* === КАРТОЧКИ ТРЕНЕРОВ (в стиле TMPL) === */
+.coaches-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.coach-card {
+    display: flex;
+    align-items: flex-start;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 25px;
+    transition: border-color 0.3s;
+    gap: 25px;
+}
+
+.coach-card:hover {
+    border-color: #ff4500;
+}
+
+.coach-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.coach-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.coach-info {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.coach-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+    color: #fff;
+}
+
+.coach-spec {
+    color: #ff4500;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
+}
+
+.coach-exp {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+.coach-desc {
+    color: #ccc;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+.coach-clubs {
+    color: #777;
+    font-size: 0.8rem;
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+    .coach-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .coach-photo {
+        width: 140px;
+        height: 140px;
+    }
+    
+    .filter-buttons {
+        gap: 6px;
+    }
+    
+    .filter-btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+}
