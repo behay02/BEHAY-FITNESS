@@ -1110,3 +1110,24 @@ a {
         font-size: 0.8rem;
     }
 }
+.theme-toggle {
+    width: 40px; height: 40px; border-radius: 50%;
+    border: 1px solid #fff; background: transparent;
+    color: #fff; font-size: 1.2rem; cursor: pointer;
+}
+
+body.light-theme { background-color: #f5f5f5; color: #222; }
+body.light-theme .header { background-color: #fff; border-color: #ddd; }
+body.light-theme .nav a { color: #222; }
+body.light-theme .card, body.light-theme .trainer-card, body.light-theme .tariff-card,
+body.light-theme .register-box, body.light-theme .login-box, body.light-theme .profile-block,
+body.light-theme .profile-sidebar, body.light-theme .payment-form, body.light-theme .payment-info,
+body.light-theme .review { background-color: #fff; border-color: #ddd; }
+body.light-theme .card p, body.light-theme .trainer-clubs, body.light-theme .trainer-exp,
+body.light-theme .footer p { color: #666; }
+body.light-theme .trainer-about, body.light-theme .coach-desc { color: #444; }
+body.light-theme .section.dark, body.light-theme .page-title { background-color: #eee; }
+body.light-theme .footer { background-color: #e0e0e0; border-color: #ddd; }
+body.light-theme .btn-login, body.light-theme .btn-account, body.light-theme .theme-toggle { border-color: #222; color: #222; }
+body.light-theme .form-group input, body.light-theme .form-group select { background-color: #fff; border-color: #ccc; color: #222; }
+body.light-theme .hero h1, body.light-theme .hero p { color: #222; text-shadow: none; }
