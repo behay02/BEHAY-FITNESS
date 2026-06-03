@@ -177,11 +177,13 @@ function renderTrainers() {
         
         card.innerHTML = 
             '<div class="trainer-photo"><img src="' + (trainer.image || 'trainers/default.jpg') + '" alt="' + trainer.name + '"></div>' +
-            '<h3>' + trainer.name + '</h3>' +
-            '<p class="trainer-spec">' + (trainer.speciality || '') + '</p>' +
-            '<p class="trainer-exp">Опыт: ' + (trainer.exp || '') + '</p>' +
-            '<p class="trainer-clubs">📍 ' + clubsText + '</p>' +
-            '<p class="trainer-about">' + (trainer.about || '') + '</p>';
+            '<div class="trainer-info">' +
+                '<h3>' + trainer.name + '</h3>' +
+                '<p class="trainer-spec">' + (trainer.speciality || '') + '</p>' +
+                '<p class="trainer-exp">Опыт: ' + (trainer.exp || '') + '</p>' +
+                '<p class="trainer-clubs">📍 ' + clubsText + '</p>' +
+                '<p class="trainer-about">' + (trainer.about || '') + '</p>' +
+            '</div>';
         
         var clubList = (trainer.clubs || '').split(' ');
         var isCenter = clubList.some(function(c) { return centerClubs.indexOf(c) !== -1; });
