@@ -1,4 +1,3 @@
-/* === БАЗОВЫЕ НАСТРОЙКИ === */
 * {
     margin: 0;
     padding: 0;
@@ -32,7 +31,6 @@ a {
     text-decoration: none;
 }
 
-/* === КНОПКИ === */
 .btn {
     display: inline-block;
     padding: 10px 24px;
@@ -54,7 +52,6 @@ a {
     font-size: 1.2rem;
 }
 
-/* === ШАПКА === */
 .header {
     background-color: #0a0a0a;
     padding: 15px 0;
@@ -90,39 +87,26 @@ a {
     color: #ff4500;
 }
 
-/* Бургер-меню (скрыт на десктопе, виден на мобильных) */
 .burger {
     display: none;
     font-size: 1.8rem;
     cursor: pointer;
 }
 
-/* === ПЕРВЫЙ ЭКРАН === */
 .hero {
-    /* Фоновое изображение тренажерного зала */
-    background: 
-        linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)),
-        url(images/shapka.jpg) center/cover no-repeat;
-    
-    /* Растягиваем на весь экран */
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.85)), url(images/shapka.jpg) center/cover no-repeat;
     min-height: 100vh;
-    
-    /* Выравнивание текста по центру */
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    
-    /* Отступы */
     padding: 60px 20px;
 }
 
-/* Контейнер для текста внутри hero */
 .hero-content {
     max-width: 800px;
 }
 
-/* Заголовок */
 .hero h1 {
     font-size: 4rem;
     font-weight: 800;
@@ -133,14 +117,12 @@ a {
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* Подзаголовок */
 .hero p {
     font-size: 1.3rem;
     color: #ccc;
     margin-bottom: 30px;
 }
 
-/* Бейдж "1% на благотворительность" */
 .hero .badge {
     display: inline-block;
     border: 1px solid #ff4500;
@@ -152,17 +134,6 @@ a {
     background-color: rgba(255, 69, 0, 0.1);
 }
 
-/* Адаптивность для мобильных */
-@media (max-width: 768px) {
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-    .hero p {
-        font-size: 1rem;
-    }
-}
-
-/* === СЕКЦИИ === */
 .section {
     padding: 60px 0;
 }
@@ -177,7 +148,6 @@ a {
     background-color: #111;
 }
 
-/* === КАРТОЧКИ === */
 .cards {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -212,7 +182,6 @@ a {
     margin: 10px 20px 0;
 }
 
-/* === КВИЗ-БАННЕР === */
 .quiz-banner {
     text-align: center;
     background-color: #111;
@@ -223,7 +192,6 @@ a {
     margin-bottom: 20px;
 }
 
-/* === ОТЗЫВЫ === */
 .review {
     background-color: #1a1a1a;
     padding: 25px;
@@ -262,7 +230,6 @@ a {
     background-color: #ff4500;
 }
 
-/* === СТРАНИЦА РЕГИСТРАЦИИ === */
 .register-box {
     max-width: 550px;
     margin: 0 auto;
@@ -329,7 +296,6 @@ a {
     font-size: 1.1rem;
 }
 
-/* Сообщение об успехе */
 .register-success {
     max-width: 500px;
     margin: 0 auto;
@@ -352,7 +318,7 @@ a {
 .register-success .btn {
     margin-top: 20px;
 }
-/* === СТРАНИЦА ПРИЛОЖЕНИЯ === */
+
 .app-page {
     display: flex;
     gap: 40px;
@@ -376,7 +342,6 @@ a {
     flex-wrap: wrap;
 }
 
-/* === ПОДВАЛ === */
 .footer {
     background-color: #050505;
     padding: 30px 0;
@@ -389,46 +354,6 @@ a {
     margin-bottom: 5px;
 }
 
-/* === АДАПТИВНОСТЬ (мобильные устройства) === */
-@media (max-width: 768px) {
-    h1 { font-size: 1.8rem; }
-    h2 { font-size: 1.5rem; }
-    .hero h1 { font-size: 2.2rem; }
-
-    /* Скрываем обычное меню */
-    .nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: #0a0a0a;
-        flex-direction: column;
-        padding: 20px;
-        border-top: 1px solid #222;
-    }
-
-    /* Показываем меню, когда есть класс active */
-    .nav.active {
-        display: flex;
-    }
-
-    /* Показываем кнопку-бургер */
-    .burger {
-        display: block;
-    }
-
-    /* Скрываем кнопку "Купить абонемент" в шапке на мобильных */
-    .header .btn {
-        display: none;
-    }
-
-    /* Приложение — в колонку */
-    .app-page {
-        flex-direction: column;
-    }
-}
-/* === СТРАНИЦА АБОНЕМЕНТОВ === */
 .tariffs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -452,7 +377,6 @@ a {
     border-color: #ff4500;
 }
 
-/* Популярный тариф */
 .tariff-popular {
     border-color: #ff4500;
     transform: scale(1.03);
@@ -473,7 +397,6 @@ a {
     letter-spacing: 1px;
 }
 
-/* Шапка тарифа */
 .tariff-header {
     text-align: center;
     padding: 30px 20px 20px;
@@ -498,7 +421,6 @@ a {
     margin-top: 5px;
 }
 
-/* Тело тарифа (список возможностей) */
 .tariff-body {
     padding: 20px;
     flex-grow: 1;
@@ -519,7 +441,6 @@ a {
     border-bottom: none;
 }
 
-/* Подвал тарифа (кнопка) */
 .tariff-footer {
     padding: 20px;
     text-align: center;
@@ -531,22 +452,6 @@ a {
     font-size: 1.1rem;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .tariffs-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .tariff-popular {
-        transform: none;
-    }
-    
-    .tariff-price {
-        font-size: 2.5rem;
-    }
-}
-/* === КНОПКИ В ШАПКЕ === */
 .header-buttons {
     display: flex;
     gap: 10px;
@@ -564,7 +469,6 @@ a {
     color: #000 !important;
 }
 
-/* === СТРАНИЦА ВХОДА === */
 .login-box {
     max-width: 450px;
     margin: 0 auto;
@@ -607,7 +511,6 @@ a {
     font-size: 1.1rem;
 }
 
-/* Сообщение об успешном входе */
 .login-success {
     max-width: 450px;
     margin: 0 auto;
@@ -631,13 +534,6 @@ a {
     margin-top: 20px;
 }
 
-/* Адаптивность для мобильных */
-@media (max-width: 768px) {
-    .header-buttons {
-        display: none;
-    }
-}
-/* === ЛИЧНЫЙ КАБИНЕТ === */
 .profile-grid {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -645,7 +541,6 @@ a {
     align-items: start;
 }
 
-/* Левая колонка */
 .profile-sidebar {
     background-color: #1a1a1a;
     border: 1px solid #333;
@@ -680,7 +575,6 @@ a {
     margin-bottom: 5px;
 }
 
-/* Правая колонка */
 .profile-content {
     display: flex;
     flex-direction: column;
@@ -721,28 +615,12 @@ a {
     font-size: 0.95rem;
 }
 
-/* Кнопки действий */
 .profile-actions {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .profile-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .profile-actions {
-        flex-direction: column;
-    }
-    
-    .profile-actions .btn {
-        width: 100%;
-        text-align: center;
-    }
-}
 .btn-account {
     display: flex;
     align-items: center;
@@ -760,7 +638,7 @@ a {
     background-color: #fff;
     color: #000;
 }
-/* === СТРАНИЦА ЗАПИСИ НА ТРЕНИРОВКУ === */
+
 .booking-box {
     max-width: 600px;
     margin: 0 auto;
@@ -820,7 +698,6 @@ a {
     color: #fff;
 }
 
-/* Результат записи */
 .booking-summary {
     background-color: #111;
     padding: 20px;
@@ -845,7 +722,7 @@ a {
     color: #ff4500;
     font-weight: bold;
 }
-/* === СТРАНИЦА ОПЛАТЫ === */
+
 .payment-grid {
     display: grid;
     grid-template-columns: 1fr 350px;
@@ -882,7 +759,6 @@ a {
     font-size: 0.85rem;
 }
 
-/* Правая часть */
 .payment-info {
     background-color: #1a1a1a;
     border: 1px solid #333;
@@ -923,7 +799,6 @@ a {
     color: #ff4500;
 }
 
-/* Успех */
 .payment-success {
     max-width: 500px;
     margin: 40px auto;
@@ -947,17 +822,6 @@ a {
     margin-top: 20px;
 }
 
-/* Адаптивность */
-@media (max-width: 768px) {
-    .payment-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .form-row {
-        grid-template-columns: 1fr;
-    }
-}
-/* === ЗАГОЛОВОК КЛУБА === */
 .club-title {
     border-bottom: 2px solid #ff4500;
     padding-bottom: 10px;
@@ -970,7 +834,7 @@ a {
     font-size: 0.8rem;
     font-weight: normal;
 }
-/* === СТРАНИЦА ТРЕНЕРОВ (в стиле TMPL) === */
+
 .trainers-grid {
     display: flex;
     flex-direction: column;
@@ -1041,20 +905,6 @@ a {
     line-height: 1.4;
 }
 
-/* Адаптивность для мобильных */
-@media (max-width: 600px) {
-    .trainer-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 20px;
-    }
-    
-    .trainer-photo {
-        width: 100px;
-        height: 100px;
-    }
-}
-/* === ФИЛЬТР КЛУБОВ === */
 .filter-buttons {
     display: flex;
     flex-wrap: wrap;
@@ -1085,7 +935,6 @@ a {
     color: #fff;
 }
 
-/* === КАРТОЧКИ ТРЕНЕРОВ (в стиле TMPL) === */
 .coaches-list {
     display: flex;
     flex-direction: column;
@@ -1156,24 +1005,106 @@ a {
     font-size: 0.8rem;
 }
 
-/* Адаптивность */
+@media (max-width: 768px) {
+    h1 { font-size: 1.8rem; }
+    h2 { font-size: 1.5rem; }
+    .hero h1 { font-size: 2.2rem; }
+
+    .nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #0a0a0a;
+        flex-direction: column;
+        padding: 20px;
+        border-top: 1px solid #222;
+    }
+
+    .nav.active {
+        display: flex;
+    }
+
+    .burger {
+        display: block;
+    }
+
+    .header .btn {
+        display: none;
+    }
+
+    .app-page {
+        flex-direction: column;
+    }
+
+    .header-buttons {
+        display: none;
+    }
+
+    .tariffs-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .tariff-popular {
+        transform: none;
+    }
+
+    .tariff-price {
+        font-size: 2.5rem;
+    }
+
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+    .profile-actions .btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    .payment-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 600px) {
+    .trainer-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .trainer-photo {
+        width: 100px;
+        height: 100px;
+    }
+
     .coach-card {
         flex-direction: column;
         align-items: center;
         text-align: center;
         padding: 20px;
     }
-    
+
     .coach-photo {
         width: 140px;
         height: 140px;
     }
-    
+
     .filter-buttons {
         gap: 6px;
     }
-    
+
     .filter-btn {
         padding: 8px 14px;
         font-size: 0.8rem;
