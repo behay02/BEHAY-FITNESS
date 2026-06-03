@@ -110,7 +110,7 @@ function renderClubs() {
             '<p>🕐 ' + club.hours + '</p>' +
             '<p>📍 ' + club.address + '</p>' +
             '<p>🚇 ' + club.metro + '</p>' +
-            '<a href="register.html" class="btn">Записаться</a>';
+            '<a href="tariffs.html" class="btn">Купить абонемент</a>';
         container.appendChild(card);
     });
 }
